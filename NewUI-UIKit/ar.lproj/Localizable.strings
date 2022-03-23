@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  NewUI-UIKit
+
+  Created by ahmadibrahim on 12/15/21.
+  
+*/
+
+"Salon" = "صالون";
+"gettingStarted" = "البداية";
+
+"Homepage" = "الرئيسية";
+"Popular Movies" = "الأكثر شعبية";
+"Upcoming Movies" = "تصدر قريبا";
+"Top Rated Movies" = "الاعلي تقييما";
+
+"Settings" = "الإعدادات";
+"Language" = "اللغة";
+"Privacy Policy" = "سياسة الخصوصيه";
+"Favourites" = "التفضيلات";

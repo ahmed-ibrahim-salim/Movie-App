@@ -1,0 +1,6 @@
+framework module Pods_NewUI_UIKit {
+  umbrella header "Pods-NewUI-UIKit-umbrella.h"
+
+  export *
+  module * { export * }
+}

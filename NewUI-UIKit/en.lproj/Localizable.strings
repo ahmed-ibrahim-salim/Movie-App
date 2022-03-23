@@ -1,0 +1,20 @@
+/* 
+  Localizable.strings
+  NewUI-UIKit
+
+  Created by ahmadibrahim on 12/15/21.
+  
+*/
+
+"Salon" = "Salon";
+"gettingStarted" = "Getting Started";
+
+"Homepage" = "Homepage";
+"Popular Movies" = "Popular Movies";
+"Upcoming Movies" = "Upcoming Movies";
+"Top Rated Movies" = "Top Rated Movies";
+
+"Settings" = "Settings";
+"Language" = "Language";
+"Privacy Policy" = "Privacy Policy";
+"Favourites" = "Favourites";
