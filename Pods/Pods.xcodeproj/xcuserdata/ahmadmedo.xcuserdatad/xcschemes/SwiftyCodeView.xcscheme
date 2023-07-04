@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B71C614CBF9B1B690FE941C4DF44D040"
-               BuildableName = "FittedSheets.framework"
-               BlueprintName = "FittedSheets"
+               BlueprintIdentifier = "9F814952EF88563B9B6BF14BD65058B5"
+               BuildableName = "SwiftyCodeView.framework"
+               BlueprintName = "SwiftyCodeView"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

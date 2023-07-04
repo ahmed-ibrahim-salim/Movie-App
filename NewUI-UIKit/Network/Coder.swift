@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 class Coder {
     private var keyDecodingStrategy: JSONDecoder.KeyDecodingStrategy
     

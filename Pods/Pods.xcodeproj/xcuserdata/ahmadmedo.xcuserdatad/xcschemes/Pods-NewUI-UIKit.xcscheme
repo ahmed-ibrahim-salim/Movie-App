@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "00F31BD5217A20974B5E9AAC6256D98E"
-               BuildableName = "Cosmos.framework"
-               BlueprintName = "Cosmos"
+               BlueprintIdentifier = "DCD55E1AF47D901682B1E22FD45A9FCF"
+               BuildableName = "Pods_NewUI_UIKit.framework"
+               BlueprintName = "Pods-NewUI-UIKit"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

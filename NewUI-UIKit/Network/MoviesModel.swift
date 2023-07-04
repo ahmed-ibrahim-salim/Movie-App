@@ -5,33 +5,7 @@
 //  Created by ahmadibrahim on 12/9/21.
 //
 
-//import Foundation
-
 import Foundation
-
-//// MARK: - NotificationModel
-//struct NotificationModel: Codable {
-//    let status: Bool?
-//    let message: String?
-//    let data: [Notification]?
-//    let count: Int?
-//}
-//
-//// MARK: - Notification
-//struct Notification: Codable {
-//    let id: Int?
-//       let title: String?
-//       let body: String?
-//       let read: Int?
-//       let date: String?
-//}
-//
-//// MARK: - generalResponceModel
-//struct generalResponceModel: Codable {
-//    let status: Bool?
-//    let message: String?
-//}
-
 
 // MARK: - MoviesModel
 

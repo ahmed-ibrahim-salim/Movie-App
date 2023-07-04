@@ -26,12 +26,12 @@ class DetailsVCViewController: UIViewController {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
     override func viewWillAppear(_ animated: Bool) {
-        CoreDataModel().fetch(entityName: "MovieEntityCoreData")
+       let _ = CoreDataModel().fetch(entityName: "MovieEntityCoreData")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         setDetailsData()
-        var favlist = movies.filter{ $0.value(forKey: "localMovieID") as? Int == DetailsVCViewController.movie?.id}
+        let favlist = movies.filter{ $0.value(forKey: "localMovieID") as? Int == DetailsVCViewController.movie?.id}
         if favlist.isEmpty {
             self.addtoFav.setImage(UIImage(named: "star"), for: .normal)
 

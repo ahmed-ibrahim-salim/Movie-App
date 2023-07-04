@@ -10,12 +10,15 @@ import SDWebImage
 
 
 class MainMoviesVC: UIViewController {
+    
     @IBOutlet weak var upcomingLbl: UILabel!
     @IBOutlet weak var topRatedLbl: UILabel!
-    @IBOutlet weak var topratedCollectionV: UICollectionView!
     @IBOutlet weak var popularLbl: UILabel!
+    
+    @IBOutlet weak var topratedCollectionV: UICollectionView!
     @IBOutlet weak var popularCView: UICollectionView!
     @IBOutlet weak var upComingCVIew: UICollectionView!
+    
     var topRated: [Result]?
     var popular: [Result]?
     var upcoming: [Result]?
@@ -25,36 +28,36 @@ class MainMoviesVC: UIViewController {
     var afterfirstloadTopRated = false
     var afterfirstloadPopular = false
     var afterfirstloadUpcoming = false
-
+    
     var topRatedPageNum = 0
     var popularPageNum = 0
     var upcomingPageNum = 0
+    
     // MARK: - LifeCycle
     override func viewWillAppear(_ animated: Bool) {
         systemLanguage = Bundle.main.preferredLocalizations.first as NSString?
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setCollectionV()
         setHomePageStrings()
         setSettingsButton()
-        
-        
     }
-    // MARK: - right bar button
+    
     func setSettingsButton(){
         let image = UIImage(named: "TBHomeIcon")
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: image, style: .plain, target: self, action: #selector(settingsButtonAction))
         
     }
-    // MARK: - Homepage Strings
+    
     func setHomePageStrings(){
         self.navigationItem.title = "Homepage".localized
         self.popularLbl.text = "Popular Movies".localized
         self.upcomingLbl .text = "Upcoming Movies".localized
         self.topRatedLbl .text = "Top Rated Movies".localized
     }
-    // MARK: - delegete & DataSource
+    
     func setCollectionV() {
         topratedCollectionV.delegate = self
         popularCView.delegate = self
@@ -62,95 +65,98 @@ class MainMoviesVC: UIViewController {
         popularCView.dataSource = self
         upComingCVIew.dataSource = self
         topratedCollectionV.dataSource = self
-//        if Locale.preferredLanguages.first == "ar"{
-//        }
-//        self.setMoviesLists(listType: "top_rated")
-//        self.setMoviesLists(listType: "popular")
-//        self.setMoviesLists(listType: "upcoming")
+        //        if Locale.preferredLanguages.first == "ar"{
+        //        }
+        //        self.setMoviesLists(listType: "top_rated")
+        //        self.setMoviesLists(listType: "popular")
+        //        self.setMoviesLists(listType: "upcoming")
     }
-    // MARK: - API Call
+    
+    //  MARK: Network
+    
     func setMoviesLists(listType: String, page: Int = 1){
+        
         if page == 1{
             if listType == "popular"{
-            self.afterfirstloadPopular = !self.afterfirstloadPopular
+                self.afterfirstloadPopular = !self.afterfirstloadPopular
             }else if listType == "top_rated"{
                 self.afterfirstloadTopRated = !self.afterfirstloadTopRated
             }else if listType == "upcoming"{
                 self.afterfirstloadUpcoming = !self.afterfirstloadUpcoming
             }
         }
+        
         let baseURL = "https://api.themoviedb.org/3/movie/"
         let apiKey = "80adae09b523d3037018900367438854"
         let imagebaseURL = "https://image.tmdb.org/t/p/w500/"
         
-            MovieApi.shared.getHomeData(url:
-            "\(baseURL)\(listType)?api_key=\(apiKey)&page=\(page)",completion: { Result in
-                var movieArra: [Result] = Result ?? []
-                var index = 0
-                for movie in movieArra{
-                    let newimageurl = imagebaseURL + (movie.posterPath ?? "")
-                    let newBackImage = imagebaseURL + (movie.backdropPath ?? "")
-                    movieArra[index].posterPath = newimageurl
-                    movieArra[index].backdropPath = newBackImage
-                    index += 1
+        MovieApi.shared.getHomeData(url:
+                                        "\(baseURL)\(listType)?api_key=\(apiKey)&page=\(page)"){
+            Result in
+            var movieArra: [Result] = Result ?? []
+            var index = 0
+            
+            for movie in movieArra{
+                let newimageurl = imagebaseURL + (movie.posterPath ?? "")
+                let newBackImage = imagebaseURL + (movie.backdropPath ?? "")
+                movieArra[index].posterPath = newimageurl
+                movieArra[index].backdropPath = newBackImage
+                index += 1
+            }
+            
+            if listType == "top_rated"{
+                if page != 1 {
+                    self.topRated?.append(contentsOf: movieArra)
+                }else {
+                    self.topRated = movieArra
                 }
-                if listType == "top_rated"{
-                    if page != 1 {
-                        self.topRated?.append(contentsOf: movieArra)
-                    }else {
-                        self.topRated = movieArra
-//                        if Locale.preferredLanguages.first == "ar"{
-//                            self.topratedCollectionV.transform = CGAffineTransform(scaleX: -1, y: 1)
-//                            self.topRated.reverse()
-//                        }
-                    }
-                    self.topratedCollectionV.reloadData()
+                self.topratedCollectionV.reloadData()
+            } else if listType == "popular"{
+                if page != 1 {
+                    self.popular?.append(contentsOf: movieArra)
+                }else {
+                    self.popular = movieArra
                 }
-                else if listType == "popular"{
-                    if page != 1 {
-                        self.popular?.append(contentsOf: movieArra)
-                    }else {
-                        self.popular = movieArra
-                    }
-                    self.popularCView.reloadData()
-
-                }else if listType == "upcoming"{
-                    if page != 1 {
-                        self.upcoming?.append(contentsOf: movieArra)
-                    }else {
-                        self.upcoming = movieArra
-                    }
-                    self.upComingCVIew.reloadData()
-
+                self.popularCView.reloadData()
+                
+            }else if listType == "upcoming"{
+                if page != 1 {
+                    self.upcoming?.append(contentsOf: movieArra)
+                }else {
+                    self.upcoming = movieArra
                 }
-               
-            })
-}
-// MARK: - Top Right Button Action
-@objc func settingsButtonAction(){
-    let sb = UIStoryboard(name: "MoviesMain", bundle: nil)
-    let vc = sb.instantiateViewController(identifier: "settingsvc") as? MovieSettingsVC ?? UIViewController()
-
-    navigationController?.pushViewController(vc, animated: true)
-}
-
+                self.upComingCVIew.reloadData()
+                
+            }
+            
+        }
+    }
+    // MARK: - Top Right Button Action
+    @objc func settingsButtonAction(){
+        let sb = UIStoryboard(name: "MoviesMain", bundle: nil)
+        let vc = sb.instantiateViewController(identifier: "settingsvc") as? MovieSettingsVC ?? UIViewController()
+        
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
 }
- // MARK: - Extensions
-extension MainMoviesVC: UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
+// MARK: - Extensions
+extension MainMoviesVC: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         var listCount = 0
+        
         if collectionView == topratedCollectionV {
             listCount = self.topRated?.count ?? 1
         }else if collectionView == popularCView {
             listCount = self.popular?.count ?? 1
-        }
-        else if collectionView == upComingCVIew {
+        }else if collectionView == upComingCVIew {
             listCount = self.upcoming?.count ?? 1
         }
+        
         return listCount
     }
-    // MARK: - Cell
+    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! MovieCVCell
         if collectionView == topratedCollectionV {
@@ -168,14 +174,15 @@ extension MainMoviesVC: UICollectionViewDelegate,UICollectionViewDataSource,UICo
         cell.contentView.layer.shadowRadius = 1.0
         cell.contentView.layer.shadowColor = UIColor.lightGray.cgColor
         cell.contentView.layer.shadowOpacity = 1
-//        cell.transform = CGAffineTransform(scaleX: -1, y: 1)
+        //        cell.transform = CGAffineTransform(scaleX: -1, y: 1)
         return cell
     }
-    // MARK: - View Layout
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.bounds.width/3, height: collectionView.bounds.height)
     }
-    // MARK: - didSelectItem
+    
+    // MARK: didSelectItem
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let sb = UIStoryboard(name: "MoviesMain", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "detailsvc") as? DetailsVCViewController ?? UIViewController()
@@ -183,14 +190,15 @@ extension MainMoviesVC: UICollectionViewDelegate,UICollectionViewDataSource,UICo
             DetailsVCViewController.movie = topRated?[indexPath.row]
         }else if collectionView == popularCView {
             DetailsVCViewController.movie = popular?[indexPath.row]
-
+            
         }else if collectionView == upComingCVIew {
             DetailsVCViewController.movie = upcoming?[indexPath.row]
         }
         navigationController?.pushViewController(vc, animated: true)
         
     }
-    // MARK: - Pagination
+    
+    // MARK:  Pagination
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if collectionView == topratedCollectionV {
             if self.systemLanguage == "ar"{
@@ -209,7 +217,7 @@ extension MainMoviesVC: UICollectionViewDelegate,UICollectionViewDataSource,UICo
                     setMoviesLists(listType: "top_rated", page: topRatedPageNum)
                 }
             }
-
+            
         }else if collectionView == popularCView {
             if self.systemLanguage == "ar"{
                 if (indexPath.row == 19) && afterfirstloadPopular{

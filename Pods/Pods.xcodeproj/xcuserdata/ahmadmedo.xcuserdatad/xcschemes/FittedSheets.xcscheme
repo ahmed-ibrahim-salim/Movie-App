@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1240"
+   LastUpgradeVersion = "1300"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "13E17D11090C69C55E1CC5C52E359A6A"
-               BuildableName = "MOLH.framework"
-               BlueprintName = "MOLH"
+               BlueprintIdentifier = "B71C614CBF9B1B690FE941C4DF44D040"
+               BuildableName = "FittedSheets.framework"
+               BlueprintName = "FittedSheets"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

@@ -1,11 +1,11 @@
 PODS:
-  - Alamofire (5.4.4)
+  - Alamofire (5.6.4)
   - Cosmos (23.0.0)
-  - FittedSheets (2.4.2)
+  - FittedSheets (2.5.3)
   - MOLH (1.4.3)
-  - SDWebImage (5.12.1):
-    - SDWebImage/Core (= 5.12.1)
-  - SDWebImage/Core (5.12.1)
+  - SDWebImage (5.15.6):
+    - SDWebImage/Core (= 5.15.6)
+  - SDWebImage/Core (5.15.6)
   - SwiftyCodeView (0.3.6):
     - SwiftyCodeView/Core (= 0.3.6)
   - SwiftyCodeView/Core (0.3.6)
@@ -21,7 +21,7 @@ DEPENDENCIES:
   - Toast-Swift (~> 5.0.1)
 
 SPEC REPOS:
-  trunk:
+  https://github.com/CocoaPods/Specs.git:
     - Alamofire
     - Cosmos
     - FittedSheets
@@ -31,14 +31,14 @@ SPEC REPOS:
     - Toast-Swift
 
 SPEC CHECKSUMS:
-  Alamofire: f3b09a368f1582ab751b3fff5460276e0d2cf5c9
+  Alamofire: 4e95d97098eacb88856099c4fc79b526a299e48c
   Cosmos: b5c6a9a637e28a061b54c8f8b1d8529d7d4db73f
-  FittedSheets: 661408776eb4ff514a31da75b3600bd7222b2b3d
+  FittedSheets: c22df4c06036515f247951fa174912e8a65c8ce4
   MOLH: e45827d200aeb1310641090fd8cd03ad2b42ae72
-  SDWebImage: 4dc3e42d9ec0c1028b960a33ac6b637bb432207b
+  SDWebImage: d47d81bea8a77187896b620dc79c3c528e8906b9
   SwiftyCodeView: 0252e3520749a3fda1a9b141873401f8e6c570ad
   Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
 
-PODFILE CHECKSUM: ea9cb9bc941335e7fd0dad92d7cf287cd8f28f60
+PODFILE CHECKSUM: b620c5561365e9cdb8536664bd5019208c2eba77
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.12.1

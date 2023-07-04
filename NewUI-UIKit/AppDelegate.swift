@@ -6,11 +6,10 @@
 //
 
 import UIKit
-import MOLH
 import CoreData
 
 @main
-class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
+class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     lazy var persistentContainer: NSPersistentContainer = {
@@ -24,15 +23,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MOLHResetable {
     }()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        MOLH.shared.activate(true)
-        reset()
+                
         return true
     }
-    func reset() {
-        let rootViewController: UIWindow = ((UIApplication.shared.delegate?.window)!)!
-        let story = UIStoryboard(name: "MoviesMain", bundle: nil)
-        let root = story.instantiateViewController(withIdentifier: "mainmovies")
-        rootViewController.rootViewController = root
-    }
+    
+
 }
 
