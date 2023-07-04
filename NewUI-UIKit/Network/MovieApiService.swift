@@ -28,6 +28,6 @@ class MovieApi {
             }
             completion(dataModel)
         }
-        t
+        
     }
 }
