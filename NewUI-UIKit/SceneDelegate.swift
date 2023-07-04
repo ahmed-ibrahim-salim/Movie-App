@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  NewUI-UIKit
 //
-//  Created by ahmadibrahim on 12/6/21.
+//  Created by Ahmad medo on 04/07/2023.
 //
 
 import UIKit
@@ -16,10 +16,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let _ = (scene as? UIWindowScene) else { return }
         
     }
-
-
-
-
-
 }
 
